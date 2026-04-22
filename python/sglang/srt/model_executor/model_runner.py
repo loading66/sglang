@@ -1083,28 +1083,16 @@ class ModelRunner(ModelRunnerKVCacheMixin):
 
                 warmup_start = time.perf_counter()
                 tp_group_handle = get_tp_group().device_group
-                device = None
-                sync_func = None
-                # Determine the device type based on the distributed backend
-                backend = get_default_distributed_backend(tp_group_handle)
-                if backend == "hccl":
-                    # HCCL backend for Ascend NPU
-                    device = torch.npu.current_device()
-                    sync_func = torch.npu.synchronize
-                else:
-                    device = torch.cuda.current_device()
-                    sync_func = torch.cuda.synchronize
-
-                if device is not None and sync_func is not None:
-                    # Single warmup all_reduce to initialize NCCL/RCCL/HCCL communicator
-                    warmup_tensor = torch.zeros(1, device=device)
-                    dist.all_reduce(warmup_tensor, group=tp_group_handle)
-                    sync_func()
-                    warmup_elapsed = time.perf_counter() - warmup_start
-                    logger.info(
-                        f"NCCL/RCCL/HCCL warmup completed in {warmup_elapsed:.3f}s "
-                        f"(tp_size={self.tp_size}, pp_size={self.pp_size}, ep_size={self.moe_ep_size})"
-                    )
+                device_module = torch.get_device_module(self.device)
+                # Single warmup all_reduce to initialize NCCL/RCCL/HCCL communicator
+                warmup_tensor = torch.zeros(1, device=self.device)
+                dist.all_reduce(warmup_tensor, group=tp_group_handle)
+                device_module.synchronize()
+                warmup_elapsed = time.perf_counter() - warmup_start
+                logger.info(
+                    f"NCCL/RCCL/HCCL warmup completed in {warmup_elapsed:.3f}s "
+                    f"(tp_size={self.tp_size}, pp_size={self.pp_size}, ep_size={self.moe_ep_size})"
+                )
 
         pre_model_load_memory = get_available_gpu_memory(
             self.device,
