@@ -1075,24 +1075,36 @@ class ModelRunner(ModelRunnerKVCacheMixin):
             if is_npu():
                 register_sgl_tp_rank(self.gpu_id)
 
-            # Pre-warm NCCL/RCCL to eliminate cold-start latency in first request
+            # Pre-warm NCCL/RCCL/HCCL to eliminate cold-start latency in first request
             # Controlled by --pre-warm-nccl flag (default: enabled on AMD GPUs)
             if self.server_args.pre_warm_nccl and (
                 self.tp_size > 1 or self.pp_size > 1 or self.moe_ep_size > 1
             ):
+
                 warmup_start = time.perf_counter()
                 tp_group_handle = get_tp_group().device_group
+                device = None
+                sync_func = None
+                # Determine the device type based on the distributed backend
+                backend = get_default_distributed_backend(tp_group_handle)
+                if backend == "hccl":
+                    # HCCL backend for Ascend NPU
+                    device = torch.npu.current_device()
+                    sync_func = torch.npu.synchronize
+                else:
+                    device = torch.cuda.current_device()
+                    sync_func = torch.cuda.synchronize
 
-                # Single warmup all_reduce to initialize NCCL/RCCL communicator
-                warmup_tensor = torch.zeros(1, device=torch.cuda.current_device())
-                dist.all_reduce(warmup_tensor, group=tp_group_handle)
-                torch.cuda.synchronize()
-
-                warmup_elapsed = time.perf_counter() - warmup_start
-                logger.info(
-                    f"NCCL/RCCL warmup completed in {warmup_elapsed:.3f}s "
-                    f"(tp_size={self.tp_size}, pp_size={self.pp_size}, ep_size={self.moe_ep_size})"
-                )
+                if device is not None and sync_func is not None:
+                    # Single warmup all_reduce to initialize NCCL/RCCL/HCCL communicator
+                    warmup_tensor = torch.zeros(1, device=device)
+                    dist.all_reduce(warmup_tensor, group=tp_group_handle)
+                    sync_func()
+                    warmup_elapsed = time.perf_counter() - warmup_start
+                    logger.info(
+                        f"NCCL/RCCL/HCCL warmup completed in {warmup_elapsed:.3f}s "
+                        f"(tp_size={self.tp_size}, pp_size={self.pp_size}, ep_size={self.moe_ep_size})"
+                    )
 
         pre_model_load_memory = get_available_gpu_memory(
             self.device,
