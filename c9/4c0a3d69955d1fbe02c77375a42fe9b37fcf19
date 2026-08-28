@@ -1,0 +1,38 @@
+test/registered/npu/basic_function/memory_and_scheduling/test_npu_int8_mamba_checkpoint_reuse.py
+  s_b4132794ed3abf::t_cba45298fb6769 79-83,87,93,95,97-104
+  s_b4132794ed3abf::t_aeb401f6b70d72 1-29,31-78,84-86,88-92,94,96,105-237
+  s_b4132794ed3abf::t_6cafe316b1efdb 30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "c94c0a3d69955d1fbe02c77375a42fe9b37fcf19",
+  "prompts": {},
+  "humans": {
+    "h_e2a9117da068bd": {
+      "author": "loading66 <448274043@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_b4132794ed3abf": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a90e0643982c15d409f85f5",
+        "model": "deepseek_v4_flash_official__dev"
+      },
+      "human_author": "loading66 <448274043@qq.com>",
+      "custom_attributes": {
+        "tool_name": "Edit",
+        "source_scene": "agent",
+        "session_id": "6a90e0643982c15d409f85f5",
+        "display_model_name": "DeepSeek-V4-Flash 正式版",
+        "tool_use_id": "6a91324c3982c15d409f8833",
+        "client_type": "ide",
+        "operation_id": "6a91324c3982c15d409f8833",
+        "edit_kind": "file_edit",
+        "runtime_client": "trae-tob-git-ai",
+        "external_session_id": "6a90e0643982c15d409f85f5"
+      }
+    }
+  }
+}
