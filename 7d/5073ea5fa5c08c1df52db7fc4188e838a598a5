@@ -1,0 +1,36 @@
+test/registered/npu/basic_function/memory_and_scheduling/test_npu_int8_mamba_checkpoint_reuse.py
+  s_b4132794ed3abf::t_eb5ab03e95de99 178-180
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "7d5073ea5fa5c08c1df52db7fc4188e838a598a5",
+  "prompts": {},
+  "humans": {
+    "h_e2a9117da068bd": {
+      "author": "loading66 <448274043@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_b4132794ed3abf": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a90e0643982c15d409f85f5",
+        "model": "deepseek_v4_flash_official__dev"
+      },
+      "human_author": "loading66 <448274043@qq.com>",
+      "custom_attributes": {
+        "operation_id": "6a91439e3982c15d409f88f1",
+        "client_type": "ide",
+        "tool_name": "RunCommand",
+        "external_session_id": "6a90e0643982c15d409f85f5",
+        "tool_use_id": "6a91439e3982c15d409f88f1",
+        "display_model_name": "DeepSeek-V4-Flash 正式版",
+        "source_scene": "agent",
+        "edit_kind": "bash",
+        "runtime_client": "trae-tob-git-ai",
+        "session_id": "6a90e0643982c15d409f85f5"
+      }
+    }
+  }
+}
