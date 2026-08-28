@@ -1,0 +1,36 @@
+test/registered/npu/basic_function/HiCache/test_npu_mamba_path_state_cap_evictable.py
+  s_b4132794ed3abf::t_fbea06c70e67cf 1-297
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "dbf08b9ed3e2fc5d9cdb6dfefd5efb16b706749d",
+  "prompts": {},
+  "humans": {
+    "h_e2a9117da068bd": {
+      "author": "loading66 <448274043@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_b4132794ed3abf": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a90e0643982c15d409f85f5",
+        "model": "deepseek_v4_flash_official__dev"
+      },
+      "human_author": "loading66 <448274043@qq.com>",
+      "custom_attributes": {
+        "tool_name": "RunCommand",
+        "tool_use_id": "6a9144b93982c15d409f88ff",
+        "client_type": "ide",
+        "display_model_name": "DeepSeek-V4-Flash 正式版",
+        "edit_kind": "bash",
+        "session_id": "6a90e0643982c15d409f85f5",
+        "runtime_client": "trae-tob-git-ai",
+        "operation_id": "6a9144b93982c15d409f88ff",
+        "external_session_id": "6a90e0643982c15d409f85f5",
+        "source_scene": "agent"
+      }
+    }
+  }
+}
