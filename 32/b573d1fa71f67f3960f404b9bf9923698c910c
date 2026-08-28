@@ -1,0 +1,12 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "32b573d1fa71f67f3960f404b9bf9923698c910c",
+  "prompts": {},
+  "humans": {
+    "h_e2a9117da068bd": {
+      "author": "loading66 <448274043@qq.com>"
+    }
+  }
+}
