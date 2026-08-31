@@ -1,0 +1,36 @@
+python/sglang/test/ascend/test_ascend_utils.py
+  s_b4132794ed3abf::t_bb3587952cfec2 174
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "c28cf087ef45922f51f5de8480823b615591b83d",
+  "prompts": {},
+  "humans": {
+    "h_e2a9117da068bd": {
+      "author": "loading66 <448274043@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_b4132794ed3abf": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a90e0643982c15d409f85f5",
+        "model": "deepseek_v4_flash_official__dev"
+      },
+      "human_author": "loading66 <448274043@qq.com>",
+      "custom_attributes": {
+        "client_type": "ide",
+        "display_model_name": "DeepSeek-V4-Flash 正式版",
+        "session_id": "6a90e0643982c15d409f85f5",
+        "source_scene": "agent",
+        "tool_name": "RunCommand",
+        "runtime_client": "trae-tob-git-ai",
+        "external_session_id": "6a90e0643982c15d409f85f5",
+        "operation_id": "6a951cc43dc9eae722a63665",
+        "edit_kind": "bash",
+        "tool_use_id": "6a951cc43dc9eae722a63665"
+      }
+    }
+  }
+}
